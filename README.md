@@ -3,8 +3,9 @@
 ## Pre-Req
 
 1. Ansible core install on Linux vm
-2. Ansible builder and required python module install
-3. podman must be install
+2. Ansible builder 
+3. Python3
+4. podman
 
 ## Steps:
 
