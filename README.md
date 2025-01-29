@@ -17,9 +17,9 @@ Following steps reuqired to create custom EE environment.
 
     b) login to automation hub and download base image
 
-    c)  $ podman login <aap_hub_url> --tls-verify=false
+      $ podman login <aap_hub_url> --tls-verify=false
 
-    d)  $ podman pull <aap_hub_url>/de-supported-rhel8 --tls-verify=false
+      $ podman pull <aap_hub_url>/de-supported-rhel8 --tls-verify=false
 
 
 **2. Update execution-environment.yml file - update URL to pull the base image from AAP HUB.**
