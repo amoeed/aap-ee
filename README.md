@@ -40,12 +40,12 @@ Following section need to be update.
        $ ansible-builder build -t <aap-hub-url>/<ee-name>:<tag>
        
        example:
-       $ ansible-builder build -t aap-hub.telnetinfo.ca/ee-servicenow:v1
+       $ ansible-builder build -t aap-hub.demo.local/ee-servicenow:v1
 
 **5. Upload custom EE image to aap-hub**
 
        $ podman push <aap-hub-url>/<ee-name>:<tag> --tls-verify=false
 
        example:
-       $ podman push aap-hub.telnetinfo.ca/ee-servicenow:v1 --tls-verify=false
+       $ podman push aap-hub.demo.local/ee-servicenow:v1 --tls-verify=false
 
