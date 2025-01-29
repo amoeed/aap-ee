@@ -1,29 +1,25 @@
 # AAP EE
 
+## Pre-Req
+
+1. Ansible core install on Linux vm
+2. Ansible builder and required python module install
+3. podman must be install
+
+## Steps:
+
 Following steps reuqired to create custom EE environment. 
 
-servicenow and windows collections will be added into custom EE. Redhat and community collections already added into base image. 
+**1. Download EE base image from Automation Hub**
 
-**1. Update the ansible.cfg file**
+    a) login to linux server
 
-    replace <AAP_HUB_URL> with approriate URL
-    replace AAP_HUB_TOKEN with AAP HUB one time token.
+    b) login to automation hub and download base image
 
-    [galaxy]
-        server_list = published_repo, rh-certified_repo
-        ignore_certs = true
-   
-    [galaxy_server.published_repo]
-        url = https://<AAP_HUB_URL>/api/galaxy/content/published/
-        token=<AAP_HUB_TOKEN>
-    
-    [galaxy_server.rh-certified_repo]
-        url=https://<AAP_HUB_URL>/api/galaxy/content/rh-certified/
-        token=<AAP_HUB_TOKEN>
-    
-    [galaxy_server.community_repo]
-        url=https://<AAP_HUB_URL>/api/galaxy/content/community/
-        token=<AAP_HUB_TOKEN>
+    c)  $ podman login <aap_hub_url> --tls-verify=false
+
+    d)  $ podman pull <aap_hub_url>/de-supported-rhel8 --tls-verify=false
+
 
 **2. Update execution-environment.yml file - update URL to pull the base image from AAP HUB.**
 
@@ -31,13 +27,24 @@ Following section need to be update.
 
     images:
       base_image:
-        name: <aap_hub_url>/ee-supported-rhel8:latest
+        name: <aap_hub_url>/de-supported-rhel8:latest
 
-**3. Run the Followig command to build the custom EE environment.**
+**3. Update requirements.yml and requirements.txt file**
+
+    requirements.yml file contain collections
+    requirements.txt file contain python packages.
+
+**4. Run the Followig command to build the custom EE environment.**
 
        $ ansible-builder build -t <aap-hub-url>/<ee-name>:<tag>
+       
+       example:
+       $ ansible-builder build -t aap-hub.telnetinfo.ca/ee-servicenow:v1
 
-**4. Upload custom EE image to aap-hub**
+**5. Upload custom EE image to aap-hub**
 
-       $ podman push <aap-hub-url>/<ee-name>:<tag>
+       $ podman push <aap-hub-url>/<ee-name>:<tag> --tls-verify=false
+
+       example:
+       $ podman push aap-hub.telnetinfo.ca/ee-servicenow:v1 --tls-verify=false
 
