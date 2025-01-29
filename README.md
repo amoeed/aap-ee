@@ -33,7 +33,7 @@ Following section need to be update.
 **3. Update requirements.yml and requirements.txt file**
 
     requirements.yml file contain collections
-    requirements.txt file contain python packages.
+    requirements.txt file contain python packages
 
 **4. Run the Followig command to build the custom EE environment.**
 
