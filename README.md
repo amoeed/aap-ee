@@ -1,4 +1,4 @@
-# AAP EE
+# AAP Execution Environment
 
 ## Pre-Req
 
